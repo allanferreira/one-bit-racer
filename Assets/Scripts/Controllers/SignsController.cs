@@ -9,11 +9,11 @@ namespace Controller
     public class SignsController : MonoBehaviour
     {
         [HideInInspector] public List<GameObject> signs = new List<GameObject>();
-        public int LEVEL = 1;
-        public float CARSPEED = 3f;
+        private LevelController level;
 
-        void Start()
+        void Awake()
         {
+            level = FindObjectOfType<LevelController>();
             signs = GetComponentsInChildren<Transform>()
                         .Select(children => children.gameObject)
                         .Where(gameObject => gameObject.CompareTag("Sign"))
@@ -24,13 +24,26 @@ namespace Controller
         {
             return signs
                        .OrderBy(a => Guid.NewGuid())
-                       .Where((sign, index) => index >= LEVEL)
+                       .Where(SignsDisableRule)
                        .ToList();
         }
 
         public void MoveForward()
         {
-            transform.Translate(Vector3.left * CARSPEED * Time.deltaTime);
+            transform.Translate(Vector3.left * SignsSpeedRule() * Time.deltaTime);
+        }
+
+        private float SignsSpeedRule()
+        {
+            if (level?.Difficulty >= 2) return 6f;
+            else if (level?.Difficulty >= 5) return 8f;
+            return 4f;
+        }
+
+        private bool SignsDisableRule(GameObject sign, int index)
+        {
+            var disabledByDefault = index >= UnityEngine.Random.Range(4, 6);
+            return index >= level.Difficulty || disabledByDefault;
         }
     }
 }

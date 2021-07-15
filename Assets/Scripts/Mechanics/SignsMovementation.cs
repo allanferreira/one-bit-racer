@@ -1,6 +1,4 @@
 using Controller;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mechanic
@@ -9,12 +7,12 @@ namespace Mechanic
     {
         private SignsController controller;
 
-        void Start()
+        void Awake()
         {
             controller = GetComponent<SignsController>();
         }
 
-        void Update()
+        void FixedUpdate()
         {
             controller.MoveForward();
         }

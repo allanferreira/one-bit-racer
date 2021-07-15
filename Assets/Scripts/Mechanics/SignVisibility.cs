@@ -7,7 +7,7 @@ namespace Mechanic
     {
         private SignsController controller;
       
-        void Start()
+        void Awake()
         {
             controller = GetComponent<SignsController>();
             

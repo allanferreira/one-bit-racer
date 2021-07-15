@@ -12,7 +12,7 @@ namespace Mechanic
         private bool downInput;
         private float distance = 60f;
 
-        void Start()
+        void Awake()
         {
             controller = GetComponent<PlayerController>();
         }
