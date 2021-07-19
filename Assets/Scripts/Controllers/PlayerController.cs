@@ -1,10 +1,20 @@
+using System;
 using UnityEngine;
 
 namespace Controller
 {
     public class PlayerController : MonoBehaviour
     {
-        int positionRow = 2;
+        private int positionRow = 2;
+        private int _lifes = 3;
+        private GameController game;
+
+        [HideInInspector] public int Lifes => _lifes;
+
+        private void Awake()
+        {
+            game = FindObjectOfType<GameController>();
+        }
 
         public void MoveUp(float distance)
         {
@@ -18,6 +28,20 @@ namespace Controller
             if (positionRow <= 1) return;
             transform.position = new Vector2(transform.position.x, transform.position.y - distance * Time.deltaTime);
             positionRow--;
+        }
+
+        public void Crached(GameObject collider)
+        {
+            _lifes--;
+
+            if (_lifes <= 0)
+            {
+                game.Lose();
+            }
+            else
+            {
+                Destroy(collider);
+            }
         }
     }
 }

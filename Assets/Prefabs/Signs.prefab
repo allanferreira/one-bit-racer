@@ -54,8 +54,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   signs: []
-  LEVEL: 1
-  CARSPEED: 3
 --- !u!114 &8405044728659291828
 MonoBehaviour:
   m_ObjectHideFlags: 0

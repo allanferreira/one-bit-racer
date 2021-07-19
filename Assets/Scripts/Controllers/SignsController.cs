@@ -10,9 +10,11 @@ namespace Controller
     {
         [HideInInspector] public List<GameObject> signs = new List<GameObject>();
         private LevelController level;
+        private GameController game;
 
         void Awake()
         {
+            game = FindObjectOfType<GameController>();
             level = FindObjectOfType<LevelController>();
             signs = GetComponentsInChildren<Transform>()
                         .Select(children => children.gameObject)
@@ -44,6 +46,12 @@ namespace Controller
         {
             var disabledByDefault = index >= UnityEngine.Random.Range(4, 6);
             return index >= level.Difficulty || disabledByDefault;
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (!collision.CompareTag("Player")) return;
+            game.IncreaseBonusScore();
         }
     }
 }
