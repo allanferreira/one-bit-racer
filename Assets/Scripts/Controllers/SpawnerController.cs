@@ -1,3 +1,4 @@
+using Mechanic;
 using System.Collections;
 using UnityEngine;
 
@@ -6,11 +7,11 @@ namespace Controller
     public class SpawnerController : MonoBehaviour
     {
         public GameObject signsPrefab;
-        private LevelController level;
+        private GameLevel level;
 
         void Awake()
         {
-            level = FindObjectOfType<LevelController>();
+            level = FindObjectOfType<GameLevel>();
             StartCoroutine(SpawnCoroutine());
         }
 

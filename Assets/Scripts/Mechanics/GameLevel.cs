@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Controller
+namespace Mechanic
 {
-    public class LevelController : MonoBehaviour
+    public class GameLevel : MonoBehaviour
     {
         private int _difficulty = 1;
         private int increaseDifficultyTimerInSeconds = 10;
@@ -28,6 +28,11 @@ namespace Controller
         void IncreaseDifficulty()
         {
             if(_difficulty <= 6) _difficulty++;
+        }
+
+        public void Lose()
+        {
+            Time.timeScale = 0;
         }
     }
 }

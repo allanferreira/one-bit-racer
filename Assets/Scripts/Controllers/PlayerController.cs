@@ -1,3 +1,4 @@
+using Mechanic;
 using System;
 using UnityEngine;
 
@@ -7,13 +8,13 @@ namespace Controller
     {
         private int positionRow = 2;
         private int _lifes = 3;
-        private GameController game;
+        private GameLevel level;
 
         [HideInInspector] public int Lifes => _lifes;
 
         private void Awake()
         {
-            game = FindObjectOfType<GameController>();
+            level = FindObjectOfType<GameLevel>();
         }
 
         public void MoveUp(float distance)
@@ -36,7 +37,7 @@ namespace Controller
 
             if (_lifes <= 0)
             {
-                game.Lose();
+                level.Lose();
             }
             else
             {

@@ -1,3 +1,4 @@
+using Mechanic;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,13 @@ namespace Controller
     public class StreetController : MonoBehaviour
     {
         Vector3 initialPosition;
-        private LevelController level;
+        private GameLevel level;
         float width;
 
         void Awake()
         {
             width = GetComponent<SpriteRenderer>().bounds.size.x;
-            level = FindObjectOfType<LevelController>();
+            level = FindObjectOfType<GameLevel>();
             initialPosition = transform.position;
         }
 

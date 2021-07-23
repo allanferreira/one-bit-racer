@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Controller
+namespace Mechanic
 {
-    public class GameController : MonoBehaviour
+    public class GameScore : MonoBehaviour
     {
         int _score = 0;
-        private LevelController level;
+        private GameLevel level;
 
         [HideInInspector] public int Score => _score;
 
@@ -20,7 +20,7 @@ namespace Controller
 
         void Awake()
         {
-            level = FindObjectOfType<LevelController>();
+            level = FindObjectOfType<GameLevel>();
             StartCoroutine(IncreaseScoreCoroutine());
         }
 
@@ -38,11 +38,6 @@ namespace Controller
             if (level?.Difficulty >= 2) _score += 150;
             else if (level?.Difficulty >= 5) _score += 200;
             else _score += 100;
-        }
-
-        public void Lose()
-        {
-            Time.timeScale = 0;
         }
     }
 }

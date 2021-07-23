@@ -1,3 +1,4 @@
+using Mechanic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,13 +10,13 @@ namespace Controller
     public class SignsController : MonoBehaviour
     {
         [HideInInspector] public List<GameObject> signs = new List<GameObject>();
-        private LevelController level;
-        private GameController game;
+        private GameLevel level;
+        private GameScore game;
 
         void Awake()
         {
-            game = FindObjectOfType<GameController>();
-            level = FindObjectOfType<LevelController>();
+            game = FindObjectOfType<GameScore>();
+            level = FindObjectOfType<GameLevel>();
             signs = GetComponentsInChildren<Transform>()
                         .Select(children => children.gameObject)
                         .Where(gameObject => gameObject.CompareTag("Sign"))
