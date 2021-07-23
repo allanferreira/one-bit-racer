@@ -12,6 +12,12 @@ namespace Controller
 
         [HideInInspector] public int Score => _score;
 
+        private void Start()
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 300;
+        }
+
         void Awake()
         {
             level = FindObjectOfType<LevelController>();

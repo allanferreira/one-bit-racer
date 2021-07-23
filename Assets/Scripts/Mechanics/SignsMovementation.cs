@@ -12,7 +12,7 @@ namespace Mechanic
             controller = GetComponent<SignsController>();
         }
 
-        void FixedUpdate()
+        void Update()
         {
             controller.MoveForward();
         }
