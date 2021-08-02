@@ -14,6 +14,8 @@ namespace Controller
 
         private void Awake()
         {
+            var positionInScreen = Camera.main.ScreenToWorldPoint(new Vector3(100, 0));
+            transform.position = new Vector3(positionInScreen.x, transform.position.y);
             level = FindObjectOfType<GameLevel>();
         }
 
