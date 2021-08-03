@@ -9,12 +9,14 @@ namespace Mechanic
     {
         private int _difficulty = 1;
         private int increaseDifficultyTimerInSeconds = 10;
-
+        AudioSource audioData;
         public int Difficulty => _difficulty;
 
         void Awake()
         {
             Time.timeScale = 1;
+            audioData = GetComponent<AudioSource>();
+            audioData.PlayDelayed(0);
             StartCoroutine(IncreaseDifficultyCoroutine());
         }
 
@@ -34,6 +36,7 @@ namespace Mechanic
 
         public void Lose()
         {
+            audioData.Pause();
             Time.timeScale = 0;
             SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
         }
