@@ -1,3 +1,4 @@
+using Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Mechanic
         private GameLevel level;
 
         [HideInInspector] public int Score => _score;
+        public Score scoreData;
 
         private void Start()
         {
@@ -30,6 +32,7 @@ namespace Mechanic
             {
                 yield return new WaitForSeconds(.5f);
                 _score += 25;
+                scoreData.value = _score;
             }
         }
 
@@ -38,6 +41,7 @@ namespace Mechanic
             if (level?.Difficulty >= 2) _score += 150;
             else if (level?.Difficulty >= 5) _score += 200;
             else _score += 100;
+            scoreData.value = _score;
         }
     }
 }
